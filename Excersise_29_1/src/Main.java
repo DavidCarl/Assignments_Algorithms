@@ -5,7 +5,16 @@ public class Main {
 
     public static void main(String[] args) {
         Main nw = new Main();
-        nw.treeNode();
+        SortingAlgorithms SA = new SortingAlgorithms(1000);
+
+        int[] arr = SA.getArr();
+
+        int[] arr2 = {1, -2, 1, 0, 5, 1};
+
+        System.out.println(SA.threesumzero(arr2));
+        System.out.println(SA.shit_method(arr2));
+
+        //nw.treeNode();
     }
 
     public void treeNode() {
