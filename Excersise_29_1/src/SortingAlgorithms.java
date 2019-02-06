@@ -74,59 +74,13 @@ public class SortingAlgorithms {
                 }
             }
         }
-// sort(S);
-// for i=0 to n-2 do
-//    a = S[i];
-//    start = i+1;else if
-//    end = n-1;
-//    while (start < end) do
-//       b = S[start]
-//       c = S[end];
-//       if (a+b+c == 0) then
-//          output a, b, c;
-//          // Continue search for all triplet combinations summing to zero.
-//          // We need to update both end and start together since the array values are distinct.
-//          start = start + 1;
-//          end = end - 1;
-//       else if (a+b+c > 0) then
-//          end = end - 1;
-//       else
-//          start = start + 1;
-//    end
-// end
-
-
-//        for (int i = 0; i < arr.length; i++) {
-//            for (int j = i + 1; j < arr.length; j++) {
-//                for (int k = j + 1; k < arr.length; k++) {
-////                    System.out.println(arr[i] + arr[j] + arr[k]);
-//                    if((arr[i] + arr[j] + arr[k]) == 0){
-//                        counter++;
-////                        System.out.println("Found a pair!, " + arr[i] + " + " + arr[j] + " + " + arr[k]);
-//                    }
-//                }
-//            }
-//        }
-
         return counter;
     }
 
-    public int shit_method(int[] arr) {
+    public int slow_threesum(int[] arr) {
         int counter = 0;
         arr = insertionSort(arr);
         int n = arr.length;
-//        for (int i = 0; i < arr.length; i++) {
-//            for (int j = i + 1; j < arr.length; j++) {
-//                for (int k = j + 1; k < arr.length; k++) {
-////                    System.out.println(arr[i] + arr[j] + arr[k]);
-//                    if((arr[i] + arr[j] + arr[k]) == 0){
-//                        counter++;
-//                        System.out.println("Found a pair!, " + arr[i] + " + " + arr[j] + " + " + arr[k]);
-//                    }
-//                }
-//            }
-//        }
-
         for (int i = 0; i < n - 2; i++) {
             for (int j = i + 1; j < n - 1; j++) {
                 for (int k = j + 1; k < n; k++) {
@@ -137,5 +91,9 @@ public class SortingAlgorithms {
             }
         }
         return counter;
+    }
+
+    public int[] bottom_up(int[] arr){
+        return arr;
     }
 }
