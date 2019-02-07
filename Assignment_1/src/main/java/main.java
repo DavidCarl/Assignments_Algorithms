@@ -10,9 +10,9 @@ public class main {
 //        String[] words = {"zee", "bee", "ahhh", "aahh", "aaah", "ahh", "cee", "xee", "hee"}; //Test array!
         System.out.println("Amount of words: " + words.length);
 
-        long selectionStart = System.nanoTime();
+        long selectionStart = System.currentTimeMillis();
         String[] sortedWords = SA.selectionSort(words);
-        long selectionEnd = System.nanoTime();
+        long selectionEnd = System.currentTimeMillis();
         System.out.println("selectionSort timing: " + (selectionEnd - selectionStart));
 
         long insertionStart = System.currentTimeMillis();
