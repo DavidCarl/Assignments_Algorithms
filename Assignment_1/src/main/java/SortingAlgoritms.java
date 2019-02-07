@@ -3,6 +3,7 @@ import java.util.List;
 public class SortingAlgoritms {
 
     public String[] selectionSort(String[] wordList) {
+        String swap;
         for (int i = 0; i < wordList.length - 1; ++i) {
             int minIndex = i;
             for (int j = i + 1; j < wordList.length; ++j) {
@@ -10,7 +11,7 @@ public class SortingAlgoritms {
                     minIndex = j;
                 }
             }
-            String swap = wordList[i];
+            swap = wordList[i];
             wordList[i] = wordList[minIndex];
             wordList[minIndex] = swap;
         }
@@ -18,7 +19,14 @@ public class SortingAlgoritms {
     }
 
     public String[] insertionSort(String[] wordList) {
-        System.out.println("Insertion Sort is not yet implemented!");
+        String swap;
+        for (int i = 1; i < wordList.length; i++) {
+            for(int j = i; j > 0 && wordList[j - 1].compareTo(wordList[j]) < 0; j--){
+                swap = wordList[j];
+                wordList[j] = wordList[j - 1];
+                wordList[j - 1] = swap;
+            }
+        }
         return wordList;
     }
 
