@@ -3,11 +3,11 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         // Run code here!
-        FileManager fm = new FileManager("/home/david/github/davidcarl/Assignments_Algorithms/Assignment_1/src/main/java/shakespear_s.txt");
+        //FileManager fm = new FileManager("shakespear_s.txt");
         SortingAlgoritms SA = new SortingAlgoritms();
 
-        String[] words = fm.getWordsAsArray();
-//        String[] words = {"zee", "bee", "ahhh", "aahh", "aaah", "ahh", "cee", "xee", "hee"}; //Test array!
+        //String[] words = fm.getWordsAsArray();
+        String[] words = {"zee", "bee", "ahhh", "aahh", "aaah", "ahh", "cee", "xee", "hee"}; //Test array!
         System.out.println("Amount of words: " + words.length);
 
         long selectionStart = System.currentTimeMillis();
@@ -21,12 +21,12 @@ public class main {
         System.out.println("insertionSort timing: " + (insertionEnd - insertionStart));
 
         long mergeStart = System.currentTimeMillis();
-        String[] mergeWords = SA.mergeSort(words);
+        SA.mergeSort(words, words.length);
         long mergeEnd = System.currentTimeMillis();
         System.out.println("mergeSort timing: " + (mergeEnd - mergeStart));
     }
 
-    public void print_words(String[] arr){
+    public static void print_words(String[] arr){
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }

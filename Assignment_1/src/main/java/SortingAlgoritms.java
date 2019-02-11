@@ -30,9 +30,46 @@ public class SortingAlgoritms {
         return wordList;
     }
 
-    public String[] mergeSort(String[] wordList) {
-        System.out.println("Merge Sort is not yet implemented!");
-        return wordList;
+    public void mergeSort(String[] wordList, int n) {
+        if (n < 2) {
+            return;
+        }
+
+        int m = n / 2;
+        String[] left = new String[m]; //Arrays.copyOfRange(wordList, 0, m);
+        String[] right = new String[n - m]; //Arrays.copyOfRange(wordList, m + 1, wordList.length);
+
+        for (int i = 0; i < m; i++ ) {
+           left[i] = wordList[i];
+        }
+        for (int i = m; i < n; i++) {
+            right[i - m] = wordList[i];
+        }
+
+        mergeSort(left, m);
+        mergeSort(right, n - m);
+
+        merge(wordList, left, right, m, n - m);
+    }
+
+    public void merge(String[] wordList, String[] left, String[] right, int l, int r) {
+        int i = 0, j = 0, k = 0;
+
+        while (i < l && j < r) {
+            if (left[i].compareTo(right[j]) < 0) {
+                wordList[k++] = left[i++];
+            } else {
+                wordList[k++] = right[j++];
+            }
+        }
+
+        while (i < l) {
+            wordList[k++] = left[i++];
+        }
+
+        while (j < r) {
+            wordList[k++] = right[j++];
+        }
     }
 
 
