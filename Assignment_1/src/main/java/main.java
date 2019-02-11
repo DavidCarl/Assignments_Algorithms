@@ -3,7 +3,7 @@ import java.util.List;
 public class main {
     public static void main(String[] args) {
         // Run code here!
-        FileManager fm = new FileManager("/home/david/github/davidcarl/Assignments_Algorithms/Assignment_1/src/main/java/shakespear.txt");
+        FileManager fm = new FileManager("/home/david/github/davidcarl/Assignments_Algorithms/Assignment_1/src/main/java/shakespear_s.txt");
         SortingAlgoritms SA = new SortingAlgoritms();
 
         String[] words = fm.getWordsAsArray();
