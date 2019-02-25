@@ -10,10 +10,12 @@
 
 We made acronyms for our different symbol tables, they are present here aswell as in the code.
 
- * LST =   LinkedSymbolTable
- * AST =   ArraySymbolTable
- * HST =   HashedSymbolTable
- * BTST =  BalancedTreeSymbolTable
+| Symbol Table | Acronym |
+|:------------ |:-------|
+| Linked Symbol Table | LST |
+| Array Symbol Table | AST |
+| Hashed Symbol Table | HST |
+| Balanced Tree Symbol Table | BTST|
 
 ### Results
 
@@ -21,17 +23,21 @@ We make a smaller filer to do this quicker, but our results are the following fr
 
 #### Small text file
 
- * LST: 971 millis (0.971 Seconds)
- * AST: 619 millis (0.619 seconds)
- * HST: 61 millis (0.061 seconds)
- * BTST: 14 millis (0.014 seconds)
+| Symbol Table | Time |
+|:------------|---- |
+| LST  | 971 millis (0.971 seconds) |
+| AST  | 619 millis (0.619 seconds) |
+| HST  | 61 millis (0.061 seconds)  |
+| BTST | 14 millis (0.014 seconds)  | 
 
 #### Full length text file
 
- * LST: 12904 millis (12.904 Seconds)
- * AST: 10945 millis (10.945 seconds)
- * HST: 278 millis (0.278 seconds)
- * BTST: 89 millis (0.089 seconds)
+| Symbol Table | Time |
+| ------------ | ---- |
+| LST  | 12904 millis (12.904seconds) |
+| AST  | 10945 millis (10.945 seconds) |
+| HST  | 278 millis (0.278 seconds)  |
+| BTST | 89 millis (0.089 seconds)  | 
 
 ### Our thoughts
 
