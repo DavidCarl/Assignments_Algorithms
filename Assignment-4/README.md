@@ -1,26 +1,34 @@
-# dsalg-4-airlinenetwork
+# Group StoogeSort
 
-## Assignment
-assignment: https://github.com/datsoftlyngby/soft2019spring-algorithms/blob/master/Weeklies/Week_11/04-assignment/04%20Assignment%20Airline%20Network.pdf
+## Output of running this application
+```
+MAG 1825
+MAS 1835
+Conversion of data!
+368.448986 ms
 
-Within your groups, implement a directed search.Graph for flight routes using source data from the Airline Network Data directory.
-Your graph representation should be such that it is both efficient in terms of memory use and time taken when you complete the following operations on the graph:
-1. Find if an airport can be reached from another using only a single airline company. You should compare
-- Depth-first search
-- Breadth-first search
-2. Finding shortest path (in distance) from one location to another (Dijkstra’s algirithm)
-3. Finding shortest path (in time) from one location to another, assuming that each leg transfer takes one hour.
-4. Finding airline that has widest coverage (MinimumSpanningTree)
+Depth First Search, Result:
+true
+160.963065 ms 
 
-- Defend your choice of data structure, regarding time and memory com-
-plexity – you know.... O(?).
-- Also argue why you did not choose the other data structures possible.
-Were they too slow, too large – or both?
-- Estimate the size (in bytes) of the array that would be required to complete task #1 above, if you were to use an adjacency matrix.
+Breadth First Search, Result:
+1835 to 1825 (1):  139.258631 ms
 
-----
+Dijkstra Distance, Result:
+1835 to 1825 (393.72))  508.651779 ms
+```
 
-## Assignment Data
-Airline Network Data: https://github.com/datsoftlyngby/soft2019spring-algorithms/tree/master/Weeklies/Week_11/04-assignment/Airline%20Network%20Data
+## What we have done
 
------
+Since it said nowhere we had to implement all the different stuff ourself, we choose to make a Converter to the files the book use.
+We then took the implementations from the code examples and ran with our converted data.
+
+We came to the conclusion this was the most optimal way to do it.
+
+## Timings
+
+Its possible to see our timings in the output section of this readme file.
+
+## Size of Graph Structure
+
+Since we got 5653 airports, and we gotta go out of both axises, we need to take 5653 to the power of 2. We then get the following result `5653^2 bits = 31956409 bits = 3.99 mb`

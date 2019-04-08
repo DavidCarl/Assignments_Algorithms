@@ -38,10 +38,11 @@ public class Converter {
             connections.add(new Struck(from, to, Double.parseDouble(line[3])));
         }
 
-        System.out.println(names.get("MAG"));
-        System.out.println(names.get("MAS"));
+        System.out.println("MAG " + names.get("MAG"));
+        System.out.println("MAS " + names.get("MAS"));
 
-        //writer(connections, counter);
+        writeTest1(connections, counter);
+        writeTest2(connections, counter);
         writeNames(names);
     }
 
@@ -51,14 +52,30 @@ public class Converter {
 
     }
 
-    public void writer(ArrayList<Struck> connections, int counter){
+    public void writeTest1(ArrayList<Struck> connections, int counter){
         FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter("test2.txt");
+            fileWriter = new FileWriter("CG.txt");
             fileWriter.write(counter + "\n");
             fileWriter.write(connections.size() + "\n");
             for(Struck test : connections){
                 fileWriter.write(test.toString() + "\n");
+            }
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeTest2(ArrayList<Struck> connections, int counter){
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("EWD.txt");
+            fileWriter.write(counter + "\n");
+            fileWriter.write(connections.size() + "\n");
+            for(Struck test : connections){
+                fileWriter.write(test.toString() + " " + test.getCost() + "\n");
             }
             fileWriter.flush();
             fileWriter.close();
@@ -94,15 +111,13 @@ public class Converter {
             this.cost = cost;
         }
 
+        public double getCost() {
+            return cost;
+        }
+
         @Override
         public String toString(){
-            return from + " " + to + " " + cost;
+            return from + " " + to;
         }
-    }
-
-    public static void main(String[] args) {
-        Converter conv = new Converter();
-        conv.dist();
-
     }
 }

@@ -1,53 +1,67 @@
 import edu.princeton.cs.algs4.EdgeWeightedDigraph;
+import edu.princeton.cs.algs4.Graph;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
-import search.*;
-
-import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws CloneNotSupportedException {
-        /*Graph graph = buildGraph();
+    public static void main(String[] args) {
+        Converter converter = new Converter();
+        long startTime_con = System.nanoTime();
+        converter.dist();
+        long endTime_con = System.nanoTime();
+        System.out.println("Conversion of data!");
+        System.out.println((endTime_con-startTime_con)/1e6+ " ms");
 
-        //Dijkstra dijkstra = new Dijkstra();
-        BreadthFirstSearch bfs = new BreadthFirstSearch();
-        DepthFirstSearch dfs = new DepthFirstSearch();
-
-        boolean dfs_result = dfs.DepthFirstSearch(graph, "MAG", "MAS");
-        boolean bfs_result = bfs.BreadthFirstSearch(graph, "POM", "HAC");
-
-
-        System.out.println("DFS is route? : " + dfs_result);
-        System.out.println("BFS is route? : " + bfs_result);
-
-
-        //dijkstra.dist(graph, "MAG", "MAS");*/
-
-        //Converter conv = new Converter();
-
-        //conv.dist();
+        System.out.println("\nDepth First Search, Result:");
+        long startTime_dfs = System.nanoTime();
+        dfs(1825, 1835);
+        long endTime_dfs = System.nanoTime();
+        System.out.println((endTime_dfs-startTime_dfs)/1e6+ " ms \n");
+        System.out.println("Breadth First Search, Result:");
+        long startTime_bfs = System.nanoTime();
+        bfs_main(1825, 1835);
+        long endTime_bfs = System.nanoTime();
+        System.out.println((endTime_bfs-startTime_bfs)/1e6+ " ms");
+        System.out.println("\nDijkstra Distance, Result:");
+        long startTime_dj = System.nanoTime();
         dj(1825, 1835);
+        long endTime_dj = System.nanoTime();
+        System.out.println((endTime_dj-startTime_dj)/1e6+ " ms");
     }
 
     private static void dj(int to, int from){
-        In in = new In("test2.txt");
+        In in = new In("EWD.txt");
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         int s = from;
 
         DijkstraSP sp = new DijkstraSP(G, s);
 
-        sp.hasPathTo(to);
-        StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to));
+        if(sp.hasPathTo(to)){
+            StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to));
+        }
     }
 
-    private static Graph buildGraph( ) {
-        Graph graph = new Graph();
-        for(String[] item : FileManager.readFile("airports.txt")){
-            graph.addVertex(item[0]);
+    private static void dfs(int to, int from){
+        In in = new In("CG.txt");
+        Graph G = new Graph(in);
+        int s = from;
+        DepthFirstPaths dfs = new DepthFirstPaths(G, s);
+        if (dfs.hasPathTo(to)) {
+            System.out.println(true);
+        }else{
+            System.out.println(false);
         }
-        for(String[] item : FileManager.readFile("routes.txt")){
-            graph.addEdge(item[1], item[2], item[0], Double.parseDouble(item[4]), Double.parseDouble(item[3]));
+    }
+
+    private static void bfs_main(int to, int from){
+        In in = new In("CG.txt");
+        edu.princeton.cs.algs4.Graph G = new edu.princeton.cs.algs4.Graph(in);
+
+        int s = from;
+        BreadthFirstPaths bfs = new BreadthFirstPaths(G, s);
+
+        if (bfs.hasPathTo(to)) {
+            StdOut.printf("%d to %d (%d):  ", s, to, bfs.distTo(to));
         }
-        return graph;
     }
 }
