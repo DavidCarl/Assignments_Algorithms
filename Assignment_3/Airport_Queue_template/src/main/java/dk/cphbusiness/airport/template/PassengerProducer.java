@@ -3,6 +3,7 @@ package dk.cphbusiness.airport.template;
 import dk.cphbusiness.algorithm.examples.queues.PriorityQueue;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class PassengerProducer {
@@ -51,6 +52,12 @@ public class PassengerProducer {
     
     Passenger passenger = new Passenger(nextPassengerId++, now, category, plane);
     System.out.println("Passenger "+passenger+" added to queue");
+//    try{
+//      System.out.println(queue.peek());
+//    } catch (NoSuchElementException e) {
+//
+//    }
+
     queue.enqueue(passenger);
     
     processingTicksLeft = randomizer.nextInt(120);
