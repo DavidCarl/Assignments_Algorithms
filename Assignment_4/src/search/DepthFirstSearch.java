@@ -1,0 +1,41 @@
+package search;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class DepthFirstSearch {
+    public boolean DepthFirstSearch(Graph graph, String start, String end){
+        if(start.equals((end))) return true;
+        for (AirRoute for_start : graph.adj(start)){
+            Map<String, Boolean> explored = new HashMap<String, Boolean>();
+            explored.put(start, true);
+
+            if (for_start.destination.equals(end)) {
+                return true;
+            }
+
+            if (depthExloration(for_start.destination, end, for_start.airline, graph, explored)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    private static boolean depthExloration(String start, String end, String airline, Graph graph, Map<String, Boolean> explored) {
+
+        for (AirRoute new_location : graph.adj(start)) {
+            if (explored.containsKey(new_location.destination) || !new_location.airline.equals(airline)) {
+                continue;
+            }
+            if (new_location.destination.equals(end)) {
+                return true;
+            }
+            explored.put(new_location.destination, true);
+            if(depthExloration(new_location.destination, end, airline, graph, explored)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
