@@ -21,7 +21,7 @@ public class Graph {
         node.put(airport, new ArrayList<AirRoute>());
     }
 
-    public void addEdge(String from, String to, String airlinenetwork, double time, double destination) {
-        node.get(from).add(new AirRoute(time, destination,to, airlinenetwork));
+    public void addEdge(String from, String to, String airlinenetwork, double time, double distance) {
+        node.get(from).add(new AirRoute(time, distance,to, airlinenetwork));
     }
 }

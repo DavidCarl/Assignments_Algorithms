@@ -6,10 +6,11 @@ import java.util.Map;
 public class DepthFirstSearch {
     public boolean DepthFirstSearch(Graph graph, String start, String end){
         if(start.equals((end))) return true;
-        for (AirRoute for_start : graph.adj(start)){
-            Map<String, Boolean> explored = new HashMap<String, Boolean>();
-            explored.put(start, true);
 
+        Map<String, Boolean> explored = new HashMap();
+        explored.put(start, true);
+
+        for (AirRoute for_start : graph.adj(start)){
             if (for_start.destination.equals(end)) {
                 return true;
             }
