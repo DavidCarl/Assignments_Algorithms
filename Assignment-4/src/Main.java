@@ -18,7 +18,7 @@ public class Main {
         dfs(1825, 1835);
         long endTime_dfs = System.nanoTime();
         System.out.println((endTime_dfs-startTime_dfs)/1e6+ " ms \n");
-        
+
         System.out.println("Breadth First Search, Result:");
         long startTime_bfs = System.nanoTime();
         bfs_main(1825, 1835);
@@ -31,7 +31,7 @@ public class Main {
         long endTime_dj = System.nanoTime();
         System.out.println((endTime_dj-startTime_dj)/1e6+ " ms");
 
-        System.out.println("\n!Non Working! Dijkstra Time, Result:");
+        System.out.println("\nDijkstra Time, Result:");
         long startTime_dj_2 = System.nanoTime();
         dj(1825, 1835, "TimeEWD.txt");
         long endTime_dj_2 = System.nanoTime();
@@ -46,7 +46,7 @@ public class Main {
         DijkstraSP sp = new DijkstraSP(G, s);
         if(fileName.equals("TimeEWD.txt")){
             if(sp.hasPathTo(to)){
-                StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to));
+                StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to) - 1);
             }
         }else{
             if(sp.hasPathTo(to)){
