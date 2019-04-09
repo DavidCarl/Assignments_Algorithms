@@ -8,6 +8,7 @@ public class Main {
         Converter converter = new Converter();
         long startTime_con = System.nanoTime();
         converter.dist();
+        converter.time();
         long endTime_con = System.nanoTime();
         System.out.println("Conversion of data!");
         System.out.println((endTime_con-startTime_con)/1e6+ " ms");
@@ -17,27 +18,40 @@ public class Main {
         dfs(1825, 1835);
         long endTime_dfs = System.nanoTime();
         System.out.println((endTime_dfs-startTime_dfs)/1e6+ " ms \n");
+        
         System.out.println("Breadth First Search, Result:");
         long startTime_bfs = System.nanoTime();
         bfs_main(1825, 1835);
         long endTime_bfs = System.nanoTime();
         System.out.println((endTime_bfs-startTime_bfs)/1e6+ " ms");
+
         System.out.println("\nDijkstra Distance, Result:");
         long startTime_dj = System.nanoTime();
-        dj(1825, 1835);
+        dj(1825, 1835, "EWD.txt");
         long endTime_dj = System.nanoTime();
         System.out.println((endTime_dj-startTime_dj)/1e6+ " ms");
+
+        System.out.println("\n!Non Working! Dijkstra Time, Result:");
+        long startTime_dj_2 = System.nanoTime();
+        dj(1825, 1835, "TimeEWD.txt");
+        long endTime_dj_2 = System.nanoTime();
+        System.out.println((endTime_dj_2-startTime_dj_2)/1e6+ " ms");
     }
 
-    private static void dj(int to, int from){
-        In in = new In("EWD.txt");
+    private static void dj(int to, int from, String fileName){
+        In in = new In(fileName);
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         int s = from;
 
         DijkstraSP sp = new DijkstraSP(G, s);
-
-        if(sp.hasPathTo(to)){
-            StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to));
+        if(fileName.equals("TimeEWD.txt")){
+            if(sp.hasPathTo(to)){
+                StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to));
+            }
+        }else{
+            if(sp.hasPathTo(to)){
+                StdOut.printf("%d to %d (%.2f))  ", s, to, sp.distTo(to));
+            }
         }
     }
 
