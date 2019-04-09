@@ -38,8 +38,8 @@ public class Converter {
             connections.add(new Struck(from, to, Double.parseDouble(line[3])));
         }
 
-        System.out.println("MAG " + names.get("MAG"));
-        System.out.println("MAS " + names.get("MAS"));
+        //System.out.println("MAG " + names.get("MAG"));
+        //System.out.println("MAS " + names.get("MAS"));
 
         writeTest1(connections, counter);
         writeTest2(connections, counter, "EWD.txt");
@@ -78,8 +78,8 @@ public class Converter {
             connections.add(new Struck(from, to, (Double.parseDouble(line[4]) + 1)));
         }
 
-        System.out.println("MAG " + names.get("MAG"));
-        System.out.println("MAS " + names.get("MAS"));
+        //System.out.println("MAG " + names.get("MAG"));
+        //System.out.println("MAS " + names.get("MAS"));
 
         writeTest2(connections, counter, "TimeEWD.txt");
         writeNames(names);
