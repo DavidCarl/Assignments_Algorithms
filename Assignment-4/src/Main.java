@@ -27,13 +27,13 @@ public class Main {
 
         System.out.println("\nDijkstra Distance, Result:");
         long startTime_dj = System.nanoTime();
-        dj(1825, 1835, "EWD.txt");
+        dj(304, 981, "EWD.txt");
         long endTime_dj = System.nanoTime();
         System.out.println((endTime_dj-startTime_dj)/1e6+ " ms");
 
         System.out.println("\nDijkstra Time, Result:");
         long startTime_dj_2 = System.nanoTime();
-        dj(1825, 1835, "TimeEWD.txt");
+        dj(304, 981, "TimeEWD.txt");
         long endTime_dj_2 = System.nanoTime();
         System.out.println((endTime_dj_2-startTime_dj_2)/1e6+ " ms");
     }
