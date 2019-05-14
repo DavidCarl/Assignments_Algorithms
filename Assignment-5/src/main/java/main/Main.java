@@ -1,12 +1,16 @@
 package main;
 
 import utils.FileGenerator;
+import utils.Stopwatch;
 
 public class Main {
 
     public static void main(String[] args) {
         FileGenerator fg = new FileGenerator();
 
-        fg.generateFile(1024);
+        try (Stopwatch s = new Stopwatch()) {
+            fg.generateFile(10);
+        }
+
     }
 }
