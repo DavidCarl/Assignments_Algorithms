@@ -5,21 +5,50 @@ import utils.Stopwatch;
 import utils.Reader;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         FileGenerator fg = new FileGenerator();
         Reader reader = new Reader();
+        Scanner keyboard = new Scanner(System.in);
+        while(true){
+            System.out.println("***********************************************");
+            System.out.println("*             Out-Of-Core Assignment          *");
+            System.out.println("*                                             *");
+            System.out.println("* 1. Generate a file with random float        *");
+            System.out.println("* 2. Split generated file into smaller files  *");
+            System.out.println("* 3. Sort the smaller files                   *");
+            System.out.println("* 0. Exit application                         *");
+            System.out.println("***********************************************");
 
-//        try (Stopwatch s = new Stopwatch()) {
-//            fg.generateFile(10);
-//        }
+            System.out.println("Select a option, enter the number:");
+            int myint = keyboard.nextInt();
 
-        try {
-            reader.splitFile("Files/Generated/GeneratedFile.txt", 100);
-        } catch (IOException e) {
-            e.printStackTrace();
+            switch (myint){
+                case 0:
+                    System.exit(0);
+                case 1:
+                    reader.removeFiles();
+                    System.out.println("Size in MB, please enter");
+                    int size = keyboard.nextInt();
+                    try (Stopwatch s = new Stopwatch()) {
+                        fg.generateFile(size);
+                    }
+                    break;
+                case 2:
+                    System.out.println("Size in MB, please enter");
+                    int sizeSplit = keyboard.nextInt();
+                    try {
+                        reader.splitFile("Files/Generated/GeneratedFile.txt", sizeSplit);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                default:
+                    System.out.println("Please enter a valid number!");
+                    break;
+            }
         }
     }
 }

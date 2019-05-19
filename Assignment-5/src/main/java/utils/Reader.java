@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
@@ -37,7 +38,6 @@ public class Reader {
         try (RandomAccessFile sourceFile = new RandomAccessFile(fileName, "r");
              FileChannel sourceChannel = sourceFile.getChannel()) {
             for (; position < numSplits; position++) {
-                System.out.println(position);
                 for (long i = ((position * bytesPerSplit) + bytesPerSplit); i > 0; i--) {
                     sourceFile.seek(i);
                     int currentByte = sourceFile.readByte();
@@ -59,7 +59,6 @@ public class Reader {
 
     private void writePartToFile(long byteSize, long position, FileChannel sourceChannel, List<Path> partFiles) throws IOException {
         Path fileName = Paths.get(dir + UUID.randomUUID() + suffix);
-        System.out.println(fileName.toFile());
         try (RandomAccessFile toFile = new RandomAccessFile(fileName.toFile(), "rw");
              FileChannel toChannel = toFile.getChannel()) {
             sourceChannel.position(position);
@@ -67,4 +66,15 @@ public class Reader {
         }
         partFiles.add(fileName);
     }
+
+    public void removeFiles(){
+        File directory = new File(dir);
+        File[] files = directory.listFiles();
+        for (File file : files){
+            if (!file.delete()) {
+                System.out.println("Failed to delete "+file);
+            }
+        }
+    }
 }
+
