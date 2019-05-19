@@ -12,7 +12,8 @@ import java.util.UUID;
 
 public class Reader {
 
-    //USING THIS SPLITTER http://www.admios.com/blog/how-to-split-a-file-using-java VERSION 3, CHANNELING
+    // USING THIS SPLITTER http://www.admios.com/blog/how-to-split-a-file-using-java VERSION 3, CHANNELING
+    // MODIFIED BY US
 
     private final String dir = "Files/split/";
     private final String suffix = ".splitPart";
@@ -37,19 +38,19 @@ public class Reader {
              FileChannel sourceChannel = sourceFile.getChannel()) {
             for (; position < numSplits; position++) {
                 System.out.println(position);
-                for(long i = ((position*bytesPerSplit) + bytesPerSplit); i > 0; i--){
+                for (long i = ((position * bytesPerSplit) + bytesPerSplit); i > 0; i--) {
                     sourceFile.seek(i);
-                    if(sourceFile.readByte() == 48) {
+                    int currentByte = sourceFile.readByte();
+                    sourceFile.seek(i);
+                    if (currentByte == 10) {
                         start = end;
                         end = i;
-                        System.out.println("Start: " + start + " \t--> " + end);
                         writePartToFile((end - start), start, sourceChannel, partFiles);
                         break;
                     }
                 }
             }
             if (remainingBytes > 0) {
-                System.out.println("Start: " + end + " \t--> " + sourceSize);
                 writePartToFile((sourceSize - end), end, sourceChannel, partFiles);
             }
         }
