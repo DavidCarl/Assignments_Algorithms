@@ -17,7 +17,7 @@ public class Main {
 //        }
 
         try {
-            reader.splitFile("Files/Generated/GeneratedFile.txt", 64);
+            reader.splitFile("Files/Generated/GeneratedFile.txt", 100);
         } catch (IOException e) {
             e.printStackTrace();
         }

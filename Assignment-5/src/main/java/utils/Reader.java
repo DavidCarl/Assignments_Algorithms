@@ -30,16 +30,32 @@ public class Reader {
         final long remainingBytes = sourceSize % bytesPerSplit;
         int position = 0;
 
+        long start = 0;
+        long end = 0;
+
         try (RandomAccessFile sourceFile = new RandomAccessFile(fileName, "r");
              FileChannel sourceChannel = sourceFile.getChannel()) {
-
             for (; position < numSplits; position++) {
-                //write multipart files.
-                writePartToFile(bytesPerSplit, position * bytesPerSplit, sourceChannel, partFiles);
+                for(long i = ((position*bytesPerSplit) + bytesPerSplit); i > 0; i--){
+                    sourceFile.seek(i);
+                    if(sourceFile.readByte() == 48) {
+                        start = end;
+                        end = i;
+                        System.out.println((end - start) + " : " + end);
+                        writePartToFile((end - start), start, sourceChannel, partFiles);
+                        break;
+                    }
+                }
+//                System.out.println("BYTE START!");
+//                System.out.println(start);
+//                System.out.println("BYTE END! FIRST I DIRECT AND SECOND IS NEWLINE SPLIT");
+//                System.out.println((position*bytesPerSplit) + bytesPerSplit);
+//                System.out.println(end);
+//                System.out.println("");
             }
-
             if (remainingBytes > 0) {
-                writePartToFile(remainingBytes, position * bytesPerSplit, sourceChannel, partFiles);
+                System.out.println(sourceSize + " REST FILE! " + (sourceSize - end));
+                writePartToFile((sourceSize - end), end, sourceChannel, partFiles);
             }
         }
         return partFiles;
@@ -47,6 +63,7 @@ public class Reader {
 
     private void writePartToFile(long byteSize, long position, FileChannel sourceChannel, List<Path> partFiles) throws IOException {
         Path fileName = Paths.get(dir + UUID.randomUUID() + suffix);
+//        System.out.println(fileName.toFile());
         try (RandomAccessFile toFile = new RandomAccessFile(fileName.toFile(), "rw");
              FileChannel toChannel = toFile.getChannel()) {
             sourceChannel.position(position);
@@ -54,6 +71,4 @@ public class Reader {
         }
         partFiles.add(fileName);
     }
-
-
 }
