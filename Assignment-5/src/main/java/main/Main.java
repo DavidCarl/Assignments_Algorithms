@@ -1,5 +1,6 @@
 package main;
 
+import sorting.MergeFiles;
 import utils.FileGenerator;
 import utils.Stopwatch;
 import utils.Reader;
@@ -12,14 +13,16 @@ public class Main {
     public static void main(String[] args) {
         FileGenerator fg = new FileGenerator();
         Reader reader = new Reader();
+        MergeFiles mf = new MergeFiles();
         Scanner keyboard = new Scanner(System.in);
         while(true){
             System.out.println("***********************************************");
             System.out.println("*             Out-Of-Core Assignment          *");
             System.out.println("*                                             *");
-            System.out.println("* 1. Generate a file with random float        *");
+            System.out.println("* 1. Generate a file with random floats       *");
             System.out.println("* 2. Split generated file into smaller files  *");
             System.out.println("* 3. Sort the smaller files                   *");
+            System.out.println("* 4. Merge sort smaller to one large file     *");
             System.out.println("* 0. Exit application                         *");
             System.out.println("***********************************************");
 
@@ -45,6 +48,10 @@ public class Main {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                case 3:
+                    reader.sortFiles();
+                case 4:
+                    mf.mergeFiles();
                 default:
                     System.out.println("Please enter a valid number!");
                     break;

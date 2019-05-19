@@ -1,8 +1,8 @@
 package utils;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import sorting.MergeSort;
+
+import java.io.*;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -76,5 +76,46 @@ public class Reader {
             }
         }
     }
+
+    public void sortFiles() {
+        System.out.println("Started sorting files...");
+        File directory = new File(dir);
+        File[] files = directory.listFiles();
+        ArrayList<Float> list = new ArrayList();
+
+        int count = 1;
+        for (File file : files) {
+            System.out.println("Started sorting file " + count++);
+            String line = null;
+            try {
+                FileReader fr = new FileReader(dir + file.getName());
+                BufferedReader reader = new BufferedReader(fr);
+
+                while((line = reader.readLine()) != null) {
+
+                    try {
+                        Float f = Float.parseFloat(line);
+                        list.add(f);
+                    } catch (NumberFormatException e) {
+                        // not float
+                    }
+                }
+
+                MergeSort m = new MergeSort(list);
+                m.sortGivenArray();
+                ArrayList<Float> sortedList = m.getSortedArray();
+                PrintWriter writer = new PrintWriter(dir + file.getName());
+                writer.print("");
+                for (Float f : sortedList) {
+                    writer.println(f.floatValue());
+                }
+                writer.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
 
