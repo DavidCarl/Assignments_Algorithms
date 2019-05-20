@@ -48,10 +48,13 @@ public class Main {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    break;
                 case 3:
                     reader.sortFiles();
+                    break;
                 case 4:
                     mf.mergeFiles();
+                    break;
                 default:
                     System.out.println("Please enter a valid number!");
                     break;
