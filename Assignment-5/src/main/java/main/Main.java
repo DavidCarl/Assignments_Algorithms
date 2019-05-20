@@ -15,6 +15,10 @@ public class Main {
         Reader reader = new Reader();
         MergeFiles mf = new MergeFiles();
         Scanner keyboard = new Scanner(System.in);
+        Runtime instance = Runtime.getRuntime();
+
+        final int mb = 1024 * 1024;
+
         while(true){
             System.out.println("***********************************************");
             System.out.println("*             Out-Of-Core Assignment          *");
@@ -24,6 +28,7 @@ public class Main {
             System.out.println("* 3. Sort the smaller files                   *");
             System.out.println("* 4. Merge sort smaller to one large file     *");
             System.out.println("* 0. Exit application                         *");
+            System.out.println("*                                             *");
             System.out.println("***********************************************");
 
             System.out.println("Select a option, enter the number:");
@@ -33,7 +38,6 @@ public class Main {
                 case 0:
                     System.exit(0);
                 case 1:
-                    reader.removeFiles();
                     System.out.println("Size in MB, please enter");
                     int size = keyboard.nextInt();
                     try (Stopwatch s = new Stopwatch()) {
@@ -41,6 +45,7 @@ public class Main {
                     }
                     break;
                 case 2:
+                    reader.removeFiles();
                     System.out.println("Size in MB, please enter");
                     int sizeSplit = keyboard.nextInt();
                     try {
