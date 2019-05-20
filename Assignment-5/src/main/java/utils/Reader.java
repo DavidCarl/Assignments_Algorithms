@@ -87,6 +87,7 @@ public class Reader {
         for (File file : files) {
             System.out.println("Started sorting file " + count++);
             String line = null;
+            list.clear();
             try {
                 FileReader fr = new FileReader(dir + file.getName());
                 BufferedReader reader = new BufferedReader(fr);
